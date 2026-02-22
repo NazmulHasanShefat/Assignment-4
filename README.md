@@ -13,7 +13,7 @@
   querySelector is used to get a single HTML element that have specified class name that className given in the querySelector(ClassName) method argument it's get a single HTML element
   
   #### querySelectorAll()
-  querySelectorAll is used to get all html element that have in this method argument classNames
+  querySelectorAll is used to retrieve all html elements whose class matches the class given inside this method.
 
 
 ### 2. How do you create and insert a new element into the DOM?

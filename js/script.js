@@ -5,13 +5,12 @@ const job_Navigation = document.querySelectorAll(".job_Navigation li");
 
 // show all data number status on header tabs
 function showTotalsHeader() {
-    let totalJobs = jobs.length;
     const total_jobs = document.getElementById("total_jobs");
     const header_total_display = document.getElementById("header_total_display");
     const total_interview_display = document.getElementById("total_interview_display")
     const total_rejected_display = document.getElementById("total_rejected_display")
-    header_total_display.textContent = totalJobs;
-    total_jobs.textContent = `${totalJobs} of ${totalJobs}`;
+    header_total_display.textContent = jobs.length;
+    total_jobs.textContent = `${jobs.length} of ${jobs.length}`;
     total_interview_display.textContent = interviewList.length;
     total_rejected_display.textContent = rejectedList.length;
 }
@@ -125,7 +124,9 @@ function getjobData() {
                         interviewList.push(myobj);
                         if(myobjIndex > -1){
                             rejectedList.splice(myobjIndex, 1);
+                            showTotalsHeader();
                         }
+                        
                     }
                     showTotalsHeader();
                     getjobData();
@@ -143,7 +144,9 @@ function getjobData() {
                         rejectedList.push(rejObj)
                         if(rejObjIndex > -1){
                             interviewList.splice(rejObjIndex, 1);
+                            showTotalsHeader();
                         }
+                     
                     }
                     showTotalsHeader();
                     getjobData();
@@ -215,6 +218,7 @@ function getInterviewList() {
                         rejectedList.push(rejected_obj);
                         interviewList.splice(rejected_obj_index, 1);
                         getInterviewList();
+                        showTotalsHeader();
                     }
                 })
             })
@@ -283,6 +287,7 @@ function getRejectedList() {
                     interviewList.push(rejectObj)
                     rejectedList.splice(findObjIndex, 1);
                     getRejectedList();
+                    showTotalsHeader();
                 })
             })
 
