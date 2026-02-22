@@ -19,6 +19,7 @@
 ### 2. How do you create and insert a new element into the DOM?
 
 ##### Ans
+this is sme fix
 
 ### 3. What is Event Bubbling? And how does it work?
 

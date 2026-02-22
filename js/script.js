@@ -208,6 +208,7 @@ function getInterviewList() {
             `;
 
             const reject_btn = document.querySelectorAll(".reject_btn");
+            // reject object to interview object moved
             reject_btn.forEach(btn => {
                 btn.addEventListener("click", (e) => {
                     const rejected_obj = interviewList.find(item => item.id === Number(e.target.dataset.jobrejid));
