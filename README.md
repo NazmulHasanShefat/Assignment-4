@@ -1,8 +1,8 @@
 ## Answers to Questions
 
 ### 1. What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll?
--  Ans: 
-  
+
+Ans:   
   #### getElementbyId() 
   getElementbyId is used to get HTML unique element and manipulate unique element. 
 
