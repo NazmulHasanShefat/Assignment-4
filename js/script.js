@@ -127,7 +127,6 @@ function getjobData() {
                             rejectedList.splice(myobjIndex, 1);
                         }
                     }
-                    console.log(interviewList)
                     showTotalsHeader();
                     getjobData();
                 })
