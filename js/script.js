@@ -1,28 +1,35 @@
-const interview = []
-const rejected = []
+const interviewList = []
+const rejectedList = []
 // jobs form "./jobs-data.js"
 const job_Navigation = document.querySelectorAll(".job_Navigation li");
 
 let totalJobs = jobs.length;
 
-function showTotalJobsNumber(){
+function showTotalsHeader() {
     const total_jobs = document.getElementById("total_jobs");
+    const header_total_display = document.getElementById("header_total_display");
+    const total_interview_display = document.getElementById("total_interview_display")
+    const total_rejected_display = document.getElementById("total_rejected_display")
+    header_total_display.textContent = totalJobs;
     total_jobs.textContent = totalJobs;
+    total_interview_display.textContent = interviewList.length;
+    total_rejected_display.textContent = rejectedList.length;
 }
 
-for(const jobNav of job_Navigation){
-    jobNav.addEventListener("click",(e)=>{
-        for(const jobNavs of job_Navigation){
+for (const jobNav of job_Navigation) {
+    jobNav.addEventListener("click", (e) => {
+        for (const jobNavs of job_Navigation) {
             jobNavs.classList.remove("m_active")
         }
-        if(!e.target.classList.contains("m_active")){
+        if (!e.target.classList.contains("m_active")) {
             e.target.classList.add("m_active");
-            if(e.target.dataset.filter === "all"){
+            if (e.target.dataset.filter === "all") {
                 getjobData();
                 console.log("all data");
-            }else if(e.target.dataset.filter === "Interview"){
+            } else if (e.target.dataset.filter === "Interview") {
+                getInterviewList();
                 console.log("interview data");
-            }else if(e.target.dataset.filter === "Rejected"){
+            } else if (e.target.dataset.filter === "Rejected") {
                 console.log("rejected data")
             }
         }
@@ -33,11 +40,17 @@ for(const jobNav of job_Navigation){
 
 
 
-function getjobData(){
-    const jobCards_container = document.querySelector(".jobCards_container");
-    if(jobs.length === 0){
-       jobCards_container.innerHTML = "no data found"
-    }else{       
+const jobCards_container = document.querySelector(".jobCards_container");
+function getjobData() {
+    if (jobs.length === 0) {
+        jobCards_container.innerHTML = `
+        <div class="noJob flex flex-col items-center mt-15 p-5">
+                <img src="./jobs.png" alt="">
+                <h1 class="text-lg">No jobs available</h1>
+                <p>Check back soon for new job opportunities</p>
+            </div>
+        `
+    } else {
         jobs.forEach(job => {
             jobCards_container.innerHTML += `
              <div class="jobcard bg-white p-5 mt-3">
@@ -46,7 +59,7 @@ function getjobData(){
                                 <h3 class="font-semibold text-[18px] companyName">${job.companyName}</h3>
                                 <p class="roll text-[#64748B] py-1 text-sm">${job.NeedRoll}</p>
                             </div>
-                            <div class="delete_icon cursor-pointer">
+                            <div class="delete_icon cursor-pointer" title="delete">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                                     <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4" />
                                     <path
@@ -68,25 +81,70 @@ function getjobData(){
                         <p class="text-sm py-2">${job.description}</p>
                         <div class="flex gap-3">
                             <button
-                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:border-green-400 hover:text-green-400 interview_btn" data-jobid="${job.id}">INTERVIEW</button>
+                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:bg-green-600 hover:text-white active:scale-95 interview_btn" data-jobid="${job.id}">INTERVIEW</button>
                             <button
-                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:border-red-400 hover:text-red-400 reject_btn">REJECTED</button>
+                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:bg-red-600 hover:text-white active:scale-95 reject_btn" data-jobrejid="${job.id}">REJECTED</button>
                         </div>
                     </div>
             `;
 
             const interview_btn = document.querySelectorAll(".interview_btn");
             interview_btn.forEach(intBtn => {
-                intBtn.addEventListener("click",(e)=>{
-                    console.log(e.target.dataset.jobid);
+                intBtn.addEventListener("click", (e) => {
+                    const myobj = jobs.find(item => item.id === Number(e.target.dataset.jobid))
+                    const checkExist = interviewList.find(item => item.id === myobj.id);
+                    myobj.status = "INTERVIEW";
+                    if (!checkExist) {
+                        interviewList.push(myobj);
+                         e.target.parentElement.parentElement.style.borderLeft = "2px solid #10B981"
+                    }
+                    console.log(interviewList)
+                    showTotalsHeader();
                 })
             })
-         });
+            const reject_btn = document.querySelectorAll(".reject_btn");
+            reject_btn.forEach(delBtn => {
+                delBtn.addEventListener("click", (e) => {
+                    console.log(e.target.dataset.jobrejid)
+                    const rejObj = jobs.find(item => item.id === Number(e.target.dataset.jobrejid));
+                    const existingRejectionObj = rejectedList.find(item => item.id === rejObj.id);
+                    rejObj.status = "REJECTED";
+                    if (!existingRejectionObj) {
+                        rejectedList.push(rejObj)
+                        e.target.parentElement.parentElement.style.borderLeft = "2px solid #EF4444";
+
+                    }
+                    // console.log(rejectedList);
+                    // console.log(e.target.parentElement.parentElement)
+                    showTotalsHeader();
+                })
+            })
+        });
 
     }
-}
-getjobData();
-showTotalJobsNumber();
 
+}
+
+function getInterviewList(){
+    if(interviewList.length === 0){
+        jobCards_container.innerHTML = `
+          <div class="noJob flex flex-col items-center mt-15 p-5">
+                <img src="./jobs.png" alt="">
+                <h1 class="text-lg">No jobs available</h1>
+                <p>Check back soon for new job opportunities</p>
+            </div>
+        `;
+    }else{
+        interviewList.forEach(intlist=>{
+            jobCards_container.innerHTML += `
+             
+            `
+        })
+    }
+}
+
+
+getjobData();
+showTotalsHeader();
 
 
