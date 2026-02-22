@@ -1,5 +1,5 @@
-const interviewList = []
-const rejectedList = []
+const interviewList = [];
+const rejectedList = [];
 // jobs form "./jobs-data.js"
 const job_Navigation = document.querySelectorAll(".job_Navigation li");
 
@@ -30,6 +30,7 @@ for (const jobNav of job_Navigation) {
                 getInterviewList();
                 console.log("interview data");
             } else if (e.target.dataset.filter === "Rejected") {
+                getjobData();
                 getRejectedList();
                 console.log("rejected data")
             }
@@ -52,11 +53,11 @@ function getjobData() {
                 <h1 class="text-lg">No jobs available</h1>
                 <p>Check back soon for new job opportunities</p>
             </div>
-        `
+        `;
     } else {
         jobs.forEach(job => {
             jobCards_container.innerHTML += `
-             <div class="jobcard bg-white p-5 mt-3">
+             <div class="jobcard bg-white p-5 mt-3 ${job.status === "REJECTED" ? "border-l-2 border-red-500": job.status === "INTERVIEW" ? "border-l-2 border-green-600": null}">
                         <div class="card_header flex justify-between items-center">
                              <div>
                                 <h3 class="font-semibold text-[18px] companyName">${job.companyName}</h3>
@@ -80,7 +81,7 @@ function getjobData() {
                                 <li><span><span>$</span>${(job.startingSalery).toLocaleString()}</span> - <span>$</span><span>${(job.highestSalary).toLocaleString()}</span></li>
                             </ul>
                         </div>
-                        <button class="py-[8px] px-[12px] rounded-md bg-[#EEF4FF] text-sm">${job.status}</button>
+                        <button class="py-[8px] px-[12px] rounded-md bg-[#EEF4FF] ${job.status === "REJECTED" ? "bg-red-500/20 text-red-600": job.status === "INTERVIEW" ? "bg-green-500/20 text-green-600" : ""} text-sm">${job.status}</button>
                         <p class="text-sm py-2">${job.description}</p>
                         <div class="flex gap-3">
                             <button
@@ -103,6 +104,7 @@ function getjobData() {
                     }
                     console.log(interviewList)
                     showTotalsHeader();
+                    getjobData();
                 })
             })
             const reject_btn = document.querySelectorAll(".reject_btn");
@@ -115,11 +117,11 @@ function getjobData() {
                     if (!existingRejectionObj) {
                         rejectedList.push(rejObj)
                         e.target.parentElement.parentElement.style.borderLeft = "2px solid #EF4444";
-
                     }
                     // console.log(rejectedList);
                     // console.log(e.target.parentElement.parentElement)
                     showTotalsHeader();
+                    getjobData();
                 })
             })
         });
@@ -141,7 +143,7 @@ function getInterviewList() {
     } else {
         interviewList.forEach(intlist => {
             jobCards_container.innerHTML += `
-               <div class="jobcard bg-white p-5 mt-3">
+               <div class="jobcard bg-white p-5 mt-3 border-l-2 border-green-600">
                         <div class="card_header flex justify-between items-center">
                              <div>
                                 <h3 class="font-semibold text-[18px] companyName">${intlist.companyName}</h3>
@@ -165,7 +167,7 @@ function getInterviewList() {
                                 <li><span><span>$</span>${(intlist.startingSalery).toLocaleString()}</span> - <span>$</span><span>${(intlist.highestSalary).toLocaleString()}</span></li>
                             </ul>
                         </div>
-                        <button class="py-[8px] px-[12px] rounded-md bg-[#EEF4FF] text-sm">${intlist.status}</button>
+                        <button class="py-[8px] px-[12px] rounded-md bg-green-500/20 text-green-600 text-sm">${intlist.status}</button>
                         <p class="text-sm py-2">${intlist.description}</p>
                         <div class="flex gap-3">
                             <button
@@ -192,7 +194,7 @@ function getRejectedList(){
     }else{
         rejectedList.forEach(item => {
             jobCards_container.innerHTML += `
-              <div class="jobcard bg-white p-5 mt-3">
+              <div class="jobcard bg-white p-5 mt-3 border-l-2 border-red-600">
                         <div class="card_header flex justify-between items-center">
                              <div>
                                 <h3 class="font-semibold text-[18px] companyName">${item.companyName}</h3>
@@ -216,7 +218,7 @@ function getRejectedList(){
                                 <li><span><span>$</span>${(item.startingSalery).toLocaleString()}</span> - <span>$</span><span>${(item.highestSalary).toLocaleString()}</span></li>
                             </ul>
                         </div>
-                        <button class="py-[8px] px-[12px] rounded-md bg-[#EEF4FF] text-sm">${item.status}</button>
+                        <button class="py-[8px] px-[12px] rounded-md bg-red-500/20 text-red-600 text-sm">${item.status}</button>
                         <p class="text-sm py-2">${item.description}</p>
                         <div class="flex gap-3">
                             <button
