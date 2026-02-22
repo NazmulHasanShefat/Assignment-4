@@ -60,7 +60,7 @@ function getjobData() {
     } else {
         jobs.forEach(job => {
             jobCards_container.innerHTML += `
-             <div class="jobcard bg-white p-5 mt-3 ${job.status === "REJECTED" ? "border-l-2 border-red-500": job.status === "INTERVIEW" ? "border-l-2 border-green-600": null}">
+             <div class="jobcard bg-white p-5 mt-3 ${job.status === "REJECTED" ? "border-l-2 border-red-500" : job.status === "INTERVIEW" ? "border-l-2 border-green-600" : null}">
                         <div class="card_header flex justify-between items-center">
                              <div>
                                 <h3 class="font-semibold text-[18px] companyName">${job.companyName}</h3>
@@ -84,7 +84,7 @@ function getjobData() {
                                 <li><span><span>$</span>${(job.startingSalery).toLocaleString()}</span> - <span>$</span><span>${(job.highestSalary).toLocaleString()}</span></li>
                             </ul>
                         </div>
-                        <button class="py-[8px] px-[12px] rounded-md bg-[#EEF4FF] ${job.status === "REJECTED" ? "bg-red-500/20 text-red-600": job.status === "INTERVIEW" ? "bg-green-500/20 text-green-600" : ""} text-sm">${job.status}</button>
+                        <button class="py-[8px] px-[12px] rounded-md bg-[#EEF4FF] ${job.status === "REJECTED" ? "bg-red-500/20 text-red-600" : job.status === "INTERVIEW" ? "bg-green-500/20 text-green-600" : ""} text-sm">${job.status}</button>
                         <p class="text-sm py-2">${job.description}</p>
                         <div class="flex gap-3">
                             <button
@@ -174,7 +174,7 @@ function getInterviewList() {
                         <p class="text-sm py-2">${intlist.description}</p>
                         <div class="flex gap-3">
                             <button
-                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:bg-green-600 hover:text-white active:scale-95 interview_btn" data-jobid="${intlist.id}">INTERVIEW</button>
+                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:bg-green-600 hover:text-white active:scale-95 disabled:border-gray-500 disabled:text-gray-500 disabled:pointer-events-none interview_btn" data-jobid="${intlist.id}" disabled>INTERVIEW</button>
                             <button
                                 class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:bg-red-600 hover:text-white active:scale-95 reject_btn" data-jobrejid="${intlist.id}">REJECTED</button>
                         </div>
@@ -183,13 +183,13 @@ function getInterviewList() {
 
             const reject_btn = document.querySelectorAll(".reject_btn");
             reject_btn.forEach(btn => {
-                btn.addEventListener("click",(e)=>{
+                btn.addEventListener("click", (e) => {
                     console.log(e.target.dataset.jobrejid);
                     const rejected_obj = interviewList.find(item => item.id === Number(e.target.dataset.jobrejid));
                     const rejected_obj_index = interviewList.findIndex(item => item.id === Number(e.target.dataset.jobrejid));
-                    const existingObj = rejectedList.find(item=> item.id === rejected_obj.id);
+                    const existingObj = rejectedList.find(item => item.id === rejected_obj.id);
                     rejected_obj.status = "REJECTED";
-                    if(!existingObj){
+                    if (!existingObj) {
                         rejectedList.push(rejected_obj);
                         interviewList.splice(rejected_obj_index, 1);
                         getInterviewList();
@@ -201,7 +201,7 @@ function getInterviewList() {
     }
 }
 
-function getRejectedList(){
+function getRejectedList() {
     jobCards_container.innerHTML = "";
     if (rejectedList.length === 0) {
         jobCards_container.innerHTML = `
@@ -211,7 +211,7 @@ function getRejectedList(){
                 <p>Check back soon for new job opportunities</p>
             </div>
         `;
-    }else{
+    } else {
         rejectedList.forEach(item => {
             jobCards_container.innerHTML += `
               <div class="jobcard bg-white p-5 mt-3 border-l-2 border-red-600">
@@ -244,10 +244,28 @@ function getRejectedList(){
                             <button
                                 class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:bg-green-600 hover:text-white active:scale-95 interview_btn" data-jobid="${item.id}">INTERVIEW</button>
                             <button
-                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:bg-red-600 hover:text-white active:scale-95 reject_btn" data-jobrejid="${item.id}">REJECTED</button>
+                                class="py-[8px] px-[12px] disabled:border-gray-500 disabled:text-gray-500 disabled:pointer-events-none rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:bg-red-600 hover:text-white active:scale-95 reject_btn" data-jobrejid="${item.id}" disabled>REJECTED</button>
                         </div>
                     </div>
             `;
+
+            const interview_btn = document.querySelectorAll(".interview_btn");
+
+            interview_btn.forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    const rejectObj = rejectedList.find(item => item.id === Number(e.target.dataset.jobid));
+
+                    const findObjIndex = rejectedList.findIndex(item => item.id === Number(e.target.dataset.jobid));
+
+                    rejectObj.status = "INTERVIEW";
+                    interviewList.push(rejectObj)
+                    rejectedList.splice(findObjIndex, 1);
+                    console.log(interviewList)
+                    getRejectedList();
+
+                })
+            })
+
         })
     }
 }
