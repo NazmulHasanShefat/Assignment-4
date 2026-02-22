@@ -104,10 +104,14 @@ function getjobData() {
                 intBtn.addEventListener("click", (e) => {
                     // item.id is alrady number in the object this is not api because typed item.id
                     const myobj = jobs.find(item => item.id === Number(e.target.dataset.jobid));
+                    const myobjIndex = rejectedList.findIndex(item => item.id === Number(e.target.dataset.jobid));
                     const checkExist = interviewList.find(item => item.id === myobj.id);
                     myobj.status = "INTERVIEW";
                     if (!checkExist) {
                         interviewList.push(myobj);
+                        if(myobjIndex > -1){
+                            rejectedList.splice(myobjIndex, 1);
+                        }
                     }
                     console.log(interviewList)
                     showTotalsHeader();
@@ -119,10 +123,14 @@ function getjobData() {
                 delBtn.addEventListener("click", (e) => {
                     console.log(e.target.dataset.jobrejid)
                     const rejObj = jobs.find(item => item.id === Number(e.target.dataset.jobrejid));
+                    const rejObjIndex = interviewList.findIndex(item => item.id === Number(e.target.dataset.jobrejid));
                     const existingRejectionObj = rejectedList.find(item => item.id === rejObj.id);
                     rejObj.status = "REJECTED";
                     if (!existingRejectionObj) {
                         rejectedList.push(rejObj)
+                        if(rejObjIndex > -1){
+                            interviewList.splice(rejObjIndex, 1);
+                        }
                     }
                     showTotalsHeader();
                     getjobData();
