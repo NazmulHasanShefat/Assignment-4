@@ -4,7 +4,7 @@ const rejectedList = [];
 const job_Navigation = document.querySelectorAll(".job_Navigation li");
 
 let totalJobs = jobs.length;
-
+// show all data number status on header tabs
 function showTotalsHeader() {
     const total_jobs = document.getElementById("total_jobs");
     const header_total_display = document.getElementById("header_total_display");
@@ -16,6 +16,7 @@ function showTotalsHeader() {
     total_rejected_display.textContent = rejectedList.length;
 }
 
+// switch tab eventLisener added hare
 for (const jobNav of job_Navigation) {
     jobNav.addEventListener("click", (e) => {
         for (const jobNavs of job_Navigation) {
@@ -43,9 +44,11 @@ for (const jobNav of job_Navigation) {
 
 
 const jobCards_container = document.querySelector(".jobCards_container");
+
+// showing all job list on ui
 function getjobData() {
     jobCards_container.innerHTML = "";
-
+    // check joblist is empty or not
     if (jobs.length === 0) {
         jobCards_container.innerHTML = `
         <div class="noJob flex flex-col items-center mt-15 p-5">
@@ -92,15 +95,17 @@ function getjobData() {
                     </div>
             `;
 
+
+            // INTERVIEW button and rejected button functionalitys added
             const interview_btn = document.querySelectorAll(".interview_btn");
             interview_btn.forEach(intBtn => {
                 intBtn.addEventListener("click", (e) => {
-                    const myobj = jobs.find(item => item.id === Number(e.target.dataset.jobid))
+                    // item.id is alrady number in the object this is not api because typed item.id
+                    const myobj = jobs.find(item => item.id === Number(e.target.dataset.jobid));
                     const checkExist = interviewList.find(item => item.id === myobj.id);
                     myobj.status = "INTERVIEW";
                     if (!checkExist) {
                         interviewList.push(myobj);
-                        e.target.parentElement.parentElement.style.borderLeft = "2px solid #10B981"
                     }
                     console.log(interviewList)
                     showTotalsHeader();
@@ -116,10 +121,7 @@ function getjobData() {
                     rejObj.status = "REJECTED";
                     if (!existingRejectionObj) {
                         rejectedList.push(rejObj)
-                        e.target.parentElement.parentElement.style.borderLeft = "2px solid #EF4444";
                     }
-                    // console.log(rejectedList);
-                    // console.log(e.target.parentElement.parentElement)
                     showTotalsHeader();
                     getjobData();
                 })
@@ -130,6 +132,7 @@ function getjobData() {
 
 }
 
+// showing INTERVIEW list on ui
 function getInterviewList() {
     jobCards_container.innerHTML = "";
     if (interviewList.length === 0) {
@@ -177,6 +180,23 @@ function getInterviewList() {
                         </div>
                     </div>
             `;
+
+            const reject_btn = document.querySelectorAll(".reject_btn");
+            reject_btn.forEach(btn => {
+                btn.addEventListener("click",(e)=>{
+                    console.log(e.target.dataset.jobrejid);
+                    const rejected_obj = interviewList.find(item => item.id === Number(e.target.dataset.jobrejid));
+                    const rejected_obj_index = interviewList.findIndex(item => item.id === Number(e.target.dataset.jobrejid));
+                    const existingObj = rejectedList.find(item=> item.id === rejected_obj.id);
+                    rejected_obj.status = "REJECTED";
+                    if(!existingObj){
+                        rejectedList.push(rejected_obj);
+                        interviewList.splice(rejected_obj_index, 1);
+                        getInterviewList();
+                    }
+                })
+            })
+
         })
     }
 }
