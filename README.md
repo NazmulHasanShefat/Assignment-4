@@ -1,14 +1,19 @@
 ## Answers to Questions
 
 ### 1. What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll?
-- #### Ans: getElementbyId 
+-  Ans: 
+  
+  #### getElementbyId() 
   getElementbyId is used to get HTML unique element and manipulate unique element. 
 
+  #### getElementsByClassName()
   getElementsByClassName is used to get all that HTML element that element contains a specified className.
-
-querySelector is used to get a single HTML element that have specified class name that className given in the querySelector(ClassName) method argument it's get a single HTML element
-
-querySelectorAll is used to get all html element that have in this method argument classNames
+ 
+  #### querySelector()
+  querySelector is used to get a single HTML element that have specified class name that className given in the querySelector(ClassName) method argument it's get a single HTML element
+  
+  #### querySelectorAll()
+  querySelectorAll is used to get all html element that have in this method argument classNames
 
 
 ### 2. How do you create and insert a new element into the DOM?
