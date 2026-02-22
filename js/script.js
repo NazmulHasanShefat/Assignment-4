@@ -42,6 +42,8 @@ for (const jobNav of job_Navigation) {
 
 const jobCards_container = document.querySelector(".jobCards_container");
 function getjobData() {
+    jobCards_container.innerHTML = "";
+
     if (jobs.length === 0) {
         jobCards_container.innerHTML = `
         <div class="noJob flex flex-col items-center mt-15 p-5">
@@ -96,7 +98,7 @@ function getjobData() {
                     myobj.status = "INTERVIEW";
                     if (!checkExist) {
                         interviewList.push(myobj);
-                         e.target.parentElement.parentElement.style.borderLeft = "2px solid #10B981"
+                        e.target.parentElement.parentElement.style.borderLeft = "2px solid #10B981"
                     }
                     console.log(interviewList)
                     showTotalsHeader();
@@ -125,8 +127,8 @@ function getjobData() {
 
 }
 
-function getInterviewList(){
-    if(interviewList.length === 0){
+function getInterviewList() {
+    if (interviewList.length === 0) {
         jobCards_container.innerHTML = `
           <div class="noJob flex flex-col items-center mt-15 p-5">
                 <img src="./jobs.png" alt="">
@@ -134,15 +136,47 @@ function getInterviewList(){
                 <p>Check back soon for new job opportunities</p>
             </div>
         `;
-    }else{
-        interviewList.forEach(intlist=>{
+    } else {
+        jobCards_container = "";
+        interviewList.forEach(intlist => {
             jobCards_container.innerHTML += `
-             
-            `
+               <div class="jobcard bg-white p-5 mt-3">
+                        <div class="card_header flex justify-between items-center">
+                             <div>
+                                <h3 class="font-semibold text-[18px] companyName">${intlist.companyName}</h3>
+                                <p class="roll text-[#64748B] py-1 text-sm">${intlist.NeedRoll}</p>
+                            </div>
+                            <div class="delete_icon cursor-pointer" title="delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                    <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4" />
+                                    <path
+                                        d="M21.5 11H19V10.5C19 10.1022 18.842 9.72064 18.5607 9.43934C18.2794 9.15804 17.8978 9 17.5 9H14.5C14.1022 9 13.7206 9.15804 13.4393 9.43934C13.158 9.72064 13 10.1022 13 10.5V11H10.5C10.3674 11 10.2402 11.0527 10.1464 11.1464C10.0527 11.2402 10 11.3674 10 11.5C10 11.6326 10.0527 11.7598 10.1464 11.8536C10.2402 11.9473 10.3674 12 10.5 12H11V21C11 21.2652 11.1054 21.5196 11.2929 21.7071C11.4804 21.8946 11.7348 22 12 22H20C20.2652 22 20.5196 21.8946 20.7071 21.7071C20.8946 21.5196 21 21.2652 21 21V12H21.5C21.6326 12 21.7598 11.9473 21.8536 11.8536C21.9473 11.7598 22 11.6326 22 11.5C22 11.3674 21.9473 11.2402 21.8536 11.1464C21.7598 11.0527 21.6326 11 21.5 11ZM14 10.5C14 10.3674 14.0527 10.2402 14.1464 10.1464C14.2402 10.0527 14.3674 10 14.5 10H17.5C17.6326 10 17.7598 10.0527 17.8536 10.1464C17.9473 10.2402 18 10.3674 18 10.5V11H14V10.5ZM20 21H12V12H20V21ZM15 14.5V18.5C15 18.6326 14.9473 18.7598 14.8536 18.8536C14.7598 18.9473 14.6326 19 14.5 19C14.3674 19 14.2402 18.9473 14.1464 18.8536C14.0527 18.7598 14 18.6326 14 18.5V14.5C14 14.3674 14.0527 14.2402 14.1464 14.1464C14.2402 14.0527 14.3674 14 14.5 14C14.6326 14 14.7598 14.0527 14.8536 14.1464C14.9473 14.2402 15 14.3674 15 14.5ZM18 14.5V18.5C18 18.6326 17.9473 18.7598 17.8536 18.8536C17.7598 18.9473 17.6326 19 17.5 19C17.3674 19 17.2402 18.9473 17.1464 18.8536C17.0527 18.7598 17 18.6326 17 18.5V14.5C17 14.3674 17.0527 14.2402 17.1464 14.1464C17.2402 14.0527 17.3674 14 17.5 14C17.6326 14 17.7598 14.0527 17.8536 14.1464C17.9473 14.2402 18 14.3674 18 14.5Z"
+                                        fill="#64748B" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="text-[#64748B] py-2">
+                            <ul class="flex items-center gap-3 text-sm">
+                                <li>${intlist.jobPlace}</li>
+                                <span> • </span>
+                                <li class="">${intlist.jobTiming}</li>
+                                <span> • </span>
+                                <li><span><span>$</span>${(intlist.startingSalery).toLocaleString()}</span> - <span>$</span><span>${(intlist.highestSalary).toLocaleString()}</span></li>
+                            </ul>
+                        </div>
+                        <button class="py-[8px] px-[12px] rounded-md bg-[#EEF4FF] text-sm">${intlist.status}</button>
+                        <p class="text-sm py-2">${intlist.description}</p>
+                        <div class="flex gap-3">
+                            <button
+                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:bg-green-600 hover:text-white active:scale-95 interview_btn" data-jobid="${job.id}">INTERVIEW</button>
+                            <button
+                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:bg-red-600 hover:text-white active:scale-95 reject_btn" data-jobrejid="${job.id}">REJECTED</button>
+                        </div>
+                    </div>
+            `;
         })
     }
 }
-
 
 getjobData();
 showTotalsHeader();
