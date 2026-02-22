@@ -17,16 +17,24 @@ for(const jobNav of job_Navigation){
         }
         if(!e.target.classList.contains("m_active")){
             e.target.classList.add("m_active");
+            if(e.target.dataset.filter === "all"){
+                getjobData();
+                console.log("all data");
+            }else if(e.target.dataset.filter === "Interview"){
+                console.log("interview data");
+            }else if(e.target.dataset.filter === "Rejected"){
+                console.log("rejected data")
+            }
         }
     })
 }
 
 
+
+
+
 function getjobData(){
     const jobCards_container = document.querySelector(".jobCards_container");
-    console.log(jobs.length)
-    
-    console.log(jobs.length) // এখানে 0 console log এ দেখাচ্ছে 
     if(jobs.length === 0){
        jobCards_container.innerHTML = "no data found"
     }else{       
@@ -60,14 +68,21 @@ function getjobData(){
                         <p class="text-sm py-2">${job.description}</p>
                         <div class="flex gap-3">
                             <button
-                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:border-green-400 hover:text-green-400">INTERVIEW</button>
+                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:border-green-400 hover:text-green-400 interview_btn" data-jobid="${job.id}">INTERVIEW</button>
                             <button
-                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:border-red-400 hover:text-red-400">REJECTED</button>
+                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:border-red-400 hover:text-red-400 reject_btn">REJECTED</button>
                         </div>
                     </div>
             `;
-         
+
+            const interview_btn = document.querySelectorAll(".interview_btn");
+            interview_btn.forEach(intBtn => {
+                intBtn.addEventListener("click",(e)=>{
+                    console.log(e.target.dataset.jobid);
+                })
+            })
          });
+
     }
 }
 getjobData();
