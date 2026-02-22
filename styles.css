@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* custom class */
+:root{
+    --background: #f8fafc;
+    --cardBg: #ffffff;
+    --fontColor: #002C5C;
+}
+body{
+    font-family: "Geist", sans-serif;
+    background: var(--background);
+    color: var(--fontColor);
+}
+.myContainer{
+    max-width: 1110px;
+    margin: 0 auto;
+}
+.m_active{
+    background-color: #3B82F6;
+    color: #fff;
+}

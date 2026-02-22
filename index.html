@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <title>Job Application Tracker</title>
+</head>
+
+<body>
+    <header class="myContainer">
+        <h1 class="text-[32px] font-bold lg:px-0 px-5">Job Application Tracker</h1>
+        <div
+            class="result_box lg:flex justify-center items-center w-full gap-5 px-5 pb-5 lg:px-0 border-b-2 border-[#E6E7E9]">
+            <div class="lg:w-[359.33px] w-full bg-white rounded-2xl p-5">
+                <h6>Total</h6>
+                <h2>8</h2>
+            </div>
+            <div class="lg:w-[359.33px] w-full bg-white rounded-2xl p-5">
+                <h6>Total</h6>
+                <h2 class="text-green-600">8</h2>
+            </div>
+            <div class="lg:w-[359.33px] w-full bg-white rounded-2xl p-5">
+                <h6>Total</h6>
+                <h2 class="text-red-600">8</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="myContainer ">
+        <div class="flex justify-between items-center py-5">
+            <h3 class="font-semibold text-[20px]">Available Jobs</h3>
+            <p class="text-base text-[#64748B]">8 jobs</p>
+        </div>
+        <nav class="w-full h-[32px]">
+            <ul class="flex justify-start items-center text-[#64748B] gap-2">
+                <li
+                    class="py-2 w-[80px] text-center px-3 cursor-pointer text-[12px] font-medium bg-white rounded-md m_active">
+                    All</li>
+                <li class="py-2 w-[80px] text-center px-3 cursor-pointer text-[12px] font-medium bg-white rounded-md">
+                    Interview</li>
+                <li class="py-2 w-[80px] text-center px-3 cursor-pointer text-[12px] font-medium bg-white rounded-md">
+                    Rejected</li>
+            </ul>
+        </nav>
+
+        <section class="jobCards_container w-full">
+            <div class="jobcard bg-white p-5 mt-3">
+                <div class="card_header flex justify-between items-center">
+                    <div>
+                        <h3 class="font-semibold text-[18px] companyName">Mobile First Corp</h3>
+                        <p class="roll text-[#64748B] py-1 text-sm">React Native Developer</p>
+                    </div>
+                    <div class="delete_icon cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4" />
+                            <path
+                                d="M21.5 11H19V10.5C19 10.1022 18.842 9.72064 18.5607 9.43934C18.2794 9.15804 17.8978 9 17.5 9H14.5C14.1022 9 13.7206 9.15804 13.4393 9.43934C13.158 9.72064 13 10.1022 13 10.5V11H10.5C10.3674 11 10.2402 11.0527 10.1464 11.1464C10.0527 11.2402 10 11.3674 10 11.5C10 11.6326 10.0527 11.7598 10.1464 11.8536C10.2402 11.9473 10.3674 12 10.5 12H11V21C11 21.2652 11.1054 21.5196 11.2929 21.7071C11.4804 21.8946 11.7348 22 12 22H20C20.2652 22 20.5196 21.8946 20.7071 21.7071C20.8946 21.5196 21 21.2652 21 21V12H21.5C21.6326 12 21.7598 11.9473 21.8536 11.8536C21.9473 11.7598 22 11.6326 22 11.5C22 11.3674 21.9473 11.2402 21.8536 11.1464C21.7598 11.0527 21.6326 11 21.5 11ZM14 10.5C14 10.3674 14.0527 10.2402 14.1464 10.1464C14.2402 10.0527 14.3674 10 14.5 10H17.5C17.6326 10 17.7598 10.0527 17.8536 10.1464C17.9473 10.2402 18 10.3674 18 10.5V11H14V10.5ZM20 21H12V12H20V21ZM15 14.5V18.5C15 18.6326 14.9473 18.7598 14.8536 18.8536C14.7598 18.9473 14.6326 19 14.5 19C14.3674 19 14.2402 18.9473 14.1464 18.8536C14.0527 18.7598 14 18.6326 14 18.5V14.5C14 14.3674 14.0527 14.2402 14.1464 14.1464C14.2402 14.0527 14.3674 14 14.5 14C14.6326 14 14.7598 14.0527 14.8536 14.1464C14.9473 14.2402 15 14.3674 15 14.5ZM18 14.5V18.5C18 18.6326 17.9473 18.7598 17.8536 18.8536C17.7598 18.9473 17.6326 19 17.5 19C17.3674 19 17.2402 18.9473 17.1464 18.8536C17.0527 18.7598 17 18.6326 17 18.5V14.5C17 14.3674 17.0527 14.2402 17.1464 14.1464C17.2402 14.0527 17.3674 14 17.5 14C17.6326 14 17.7598 14.0527 17.8536 14.1464C17.9473 14.2402 18 14.3674 18 14.5Z"
+                                fill="#64748B" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="text-[#64748B] py-2">
+                    <ul class="flex items-center gap-3 text-sm">
+                        <li>Remote</li>
+                        <span> • </span>
+                        <li class="">Full-time </li>
+                        <span> • </span>
+                        <li><span><span>$</span>130,000</span> - <span>$</span><span>175,000</span></li>
+                    </ul>
+                </div>
+                <button class="py-[8px] px-[12px] rounded-md bg-[#EEF4FF] hover:bg-[#dde9ff] cursor-pointer text-sm">NOT APPLIED</button>
+                <p class="text-sm py-2">Build cross-platform mobile applications using React Native. Work on products
+                    used by millions of users worldwide.</p>
+                <div class="flex gap-3">
+                    <button
+                        class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:border-green-400 hover:text-green-400">INTERVIEW</button>
+                    <button
+                        class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:border-red-400 hover:text-red-400">REJECTED</button>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
