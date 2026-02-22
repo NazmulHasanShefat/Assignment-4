@@ -11,13 +11,15 @@ function showTotalsHeader() {
     const total_interview_display = document.getElementById("total_interview_display")
     const total_rejected_display = document.getElementById("total_rejected_display")
     header_total_display.textContent = totalJobs;
-    total_jobs.textContent = totalJobs;
+    total_jobs.textContent = `${totalJobs} of ${totalJobs}`;
     total_interview_display.textContent = interviewList.length;
     total_rejected_display.textContent = rejectedList.length;
 }
 
+
 // switch tab eventLisener added hare
 for (const jobNav of job_Navigation) {
+    const total_jobs = document.getElementById("total_jobs");
     jobNav.addEventListener("click", (e) => {
         for (const jobNavs of job_Navigation) {
             jobNavs.classList.remove("m_active")
@@ -26,14 +28,14 @@ for (const jobNav of job_Navigation) {
             e.target.classList.add("m_active");
             if (e.target.dataset.filter === "all") {
                 getjobData();
-                console.log("all data");
+                 total_jobs.textContent = `${totalJobs} of ${totalJobs}`;
             } else if (e.target.dataset.filter === "Interview") {
                 getInterviewList();
-                console.log("interview data");
+                total_jobs.textContent = `${interviewList.length} of ${totalJobs}`;
             } else if (e.target.dataset.filter === "Rejected") {
                 getjobData();
                 getRejectedList();
-                console.log("rejected data")
+                total_jobs.textContent = `${rejectedList.length} of ${totalJobs}`;
             }
         }
     })
