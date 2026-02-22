@@ -65,5 +65,27 @@ const jobs = [
     status: "NOT APPLIED",
     description: "Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities."
    },
+    {
+    id: 7,
+    companyName: "StartupXYZ",
+    NeedRoll: "Full Stack Engineer",
+    jobPlace: "Remote",
+    jobTiming: "Full-time",
+    startingSalery: 120000,
+    highestSalary: 160000,
+    status: "NOT APPLIED",
+    description: "Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included."
+   },
+    {
+    id: 8,
+    companyName: "TechCorp Industries",
+    NeedRoll: "Senior Frontend Developer",
+    jobPlace: "San Francisco, CA",
+    jobTiming: "Full-time",
+    startingSalery: 130000,
+    highestSalary: 175000,
+    status: "NOT APPLIED",
+    description: "We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects."
+   },
 
 ]
