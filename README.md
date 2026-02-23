@@ -67,7 +67,7 @@
 
   ```
   - when parent element have a event and than child1 have a event than child2 have a event
-  - The first time by default when click the child2 that event fire in child2 and than automatic fire child1 than parent. 
+  - By default when click the child2 that event fire in child2 and than automatic fire child1 than parent. 
    
 
 ### 4. What is Event Delegation in JavaScript? Why is it useful?
