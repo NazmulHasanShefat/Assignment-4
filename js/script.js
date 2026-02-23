@@ -99,13 +99,13 @@ function getjobData() {
                                 <li><span><span>$</span>${(job.startingSalery).toLocaleString()}</span> - <span>$</span><span>${(job.highestSalary).toLocaleString()}</span></li>
                             </ul>
                         </div>
-                        <button class="py-[8px] px-[12px] rounded-md bg-[#EEF4FF] ${job.status === "REJECTED" ? "bg-red-500/20 text-red-600" : job.status === "INTERVIEW" ? "bg-green-500/20 text-green-600" : ""} text-sm">${job.status}</button>
+                        <button class="py-2 px-3 rounded-md bg-[#EEF4FF] ${job.status === "REJECTED" ? "bg-red-500/20 text-red-600" : job.status === "INTERVIEW" ? "bg-green-500/20 text-green-600" : ""} text-sm">${job.status}</button>
                         <p class="text-sm py-2">${job.description}</p>
                         <div class="flex gap-3">
                             <button
-                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:bg-green-600 hover:text-white active:scale-95 interview_btn" data-jobid="${job.id}">INTERVIEW</button>
+                                class="py-2 px-3 rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:bg-green-600 hover:text-white active:scale-95 interview_btn" data-jobid="${job.id}">INTERVIEW</button>
                             <button
-                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:bg-red-600 hover:text-white active:scale-95 reject_btn" data-jobrejid="${job.id}">REJECTED</button>
+                                class="py-2 px-3 rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:bg-red-600 hover:text-white active:scale-95 reject_btn" data-jobrejid="${job.id}">REJECTED</button>
                         </div>
                     </div>
             `;
@@ -212,13 +212,13 @@ function getInterviewList() {
                                 <li><span><span>$</span>${(intlist.startingSalery).toLocaleString()}</span> - <span>$</span><span>${(intlist.highestSalary).toLocaleString()}</span></li>
                             </ul>
                         </div>
-                        <button class="py-[8px] px-[12px] rounded-md bg-green-500/20 text-green-600 text-sm">${intlist.status}</button>
+                        <button class="py-2 px-3 rounded-md bg-green-500/20 text-green-600 text-sm">${intlist.status}</button>
                         <p class="text-sm py-2">${intlist.description}</p>
                         <div class="flex gap-3">
                             <button
-                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:bg-green-600 hover:text-white active:scale-95 disabled:border-gray-500 disabled:text-gray-500 disabled:pointer-events-none interview_btn" data-jobid="${intlist.id}" disabled>INTERVIEW</button>
+                                class="py-2 px-3 rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:bg-green-600 hover:text-white active:scale-95 disabled:border-gray-500 disabled:text-gray-500 disabled:pointer-events-none interview_btn" data-jobid="${intlist.id}" disabled>INTERVIEW</button>
                             <button
-                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:bg-red-600 hover:text-white active:scale-95 reject_btn" data-jobrejid="${intlist.id}">REJECTED</button>
+                                class="py-2 px-3 rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:bg-red-600 hover:text-white active:scale-95 reject_btn" data-jobrejid="${intlist.id}">REJECTED</button>
                         </div>
                     </div>
             `;
@@ -298,13 +298,13 @@ function getRejectedList() {
                                 <li><span><span>$</span>${(item.startingSalery).toLocaleString()}</span> - <span>$</span><span>${(item.highestSalary).toLocaleString()}</span></li>
                             </ul>
                         </div>
-                        <button class="py-[8px] px-[12px] rounded-md bg-red-500/20 text-red-600 text-sm">${item.status}</button>
+                        <button class="py-2 px-3 rounded-md bg-red-500/20 text-red-600 text-sm">${item.status}</button>
                         <p class="text-sm py-2">${item.description}</p>
                         <div class="flex gap-3">
                             <button
-                                class="py-[8px] px-[12px] rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:bg-green-600 hover:text-white active:scale-95 interview_btn" data-jobid="${item.id}">INTERVIEW</button>
+                                class="py-2 px-3 rounded-sm cursor-pointer bg-white text-sm border border-green-600 text-green-600 hover:bg-green-600 hover:text-white active:scale-95 interview_btn" data-jobid="${item.id}">INTERVIEW</button>
                             <button
-                                class="py-[8px] px-[12px] disabled:border-gray-500 disabled:text-gray-500 disabled:pointer-events-none rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:bg-red-600 hover:text-white active:scale-95 reject_btn" data-jobrejid="${item.id}" disabled>REJECTED</button>
+                                class="py-2 px-3 disabled:border-gray-500 disabled:text-gray-500 disabled:pointer-events-none rounded-sm cursor-pointer bg-white text-sm border border-red-600 text-red-600 hover:bg-red-600 hover:text-white active:scale-95 reject_btn" data-jobrejid="${item.id}" disabled>REJECTED</button>
                         </div>
                     </div>
             `;
