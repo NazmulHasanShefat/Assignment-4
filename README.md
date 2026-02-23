@@ -17,11 +17,12 @@
 
 
 ### 2. How do you create and insert a new element into the DOM?
-
 ##### Ans
-this is sme fix
+  In javaScript document.createElement() use to create a new element and 
+  parentElement.appendChild(child) is use to insert a new element in the DOM.
 
 ### 3. What is Event Bubbling? And how does it work?
+   
 
 ### 4. What is Event Delegation in JavaScript? Why is it useful?
 

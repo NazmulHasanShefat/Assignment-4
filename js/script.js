@@ -10,13 +10,24 @@ function showTotalsHeader() {
     const total_interview_display = document.getElementById("total_interview_display")
     const total_rejected_display = document.getElementById("total_rejected_display")
     header_total_display.textContent = jobs.length;
-    total_jobs.textContent = `${jobs.length} of ${jobs.length}`;
+    total_jobs.textContent = `${jobs.length}`;
     total_interview_display.textContent = interviewList.length;
     total_rejected_display.textContent = rejectedList.length;
 }
 
-
+const total_jobs = document.getElementById("total_jobs");
+function calculateInterviewList(){
+    total_jobs.textContent = `${interviewList.length} of ${jobs.length}`;
+}
+function calculateRejectedList(){
+    total_jobs.textContent = `${rejectedList.length} of ${jobs.length}`;
+}
+function calculatejobList(){
+    total_jobs.textContent = `${jobs.length}`;
+}
 // switch tab eventLisener added hare
+
+
 for (const jobNav of job_Navigation) {
     const total_jobs = document.getElementById("total_jobs");
     jobNav.addEventListener("click", (e) => {
@@ -27,14 +38,17 @@ for (const jobNav of job_Navigation) {
             e.target.classList.add("m_active");
             if (e.target.dataset.filter === "all") {
                 getjobData();
-                 total_jobs.textContent = `${jobs.length} of ${jobs.length}`;
+                // total_jobs.textContent = `${jobs.length} of ${jobs.length}`;
+                calculatejobList();
             } else if (e.target.dataset.filter === "Interview") {
                 getInterviewList();
-                total_jobs.textContent = `${interviewList.length} of ${jobs.length}`;
+                calculateInterviewList();
+                // total_jobs.textContent = `${interviewList.length} of ${jobs.length}`;
             } else if (e.target.dataset.filter === "Rejected") {
                 getjobData();
                 getRejectedList();
-                total_jobs.textContent = `${rejectedList.length} of ${jobs.length}`;
+                calculateRejectedList();
+                // total_jobs.textContent = `${rejectedList.length} of ${jobs.length}`;
             }
         }
     })
@@ -108,6 +122,7 @@ function getjobData() {
                         getjobData();
                         // updater header ui
                         showTotalsHeader();
+                        calculatejobList();
                     }
                 })
             })
@@ -218,6 +233,7 @@ function getInterviewList() {
                         interviewList.splice(findInterviewIndex, 1);
                         getInterviewList();
                         showTotalsHeader();
+                        calculateInterviewList();
                     }
                 })
             })
@@ -235,6 +251,7 @@ function getInterviewList() {
                         interviewList.splice(rejected_obj_index, 1);
                         getInterviewList();
                         showTotalsHeader();
+                        calculateInterviewList();
                     }
                 })
             })
@@ -304,6 +321,7 @@ function getRejectedList() {
                         // update ui
                         getRejectedList();
                         showTotalsHeader();
+                        calculateRejectedList();
                     }
                 })
             })
@@ -322,6 +340,7 @@ function getRejectedList() {
                     // updata UI
                     getRejectedList();
                     showTotalsHeader();
+                    calculateRejectedList();
                 })
             })
 
