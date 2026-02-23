@@ -114,7 +114,7 @@ we can stop this behavior help of event.preventDefault() method
 - When We have parent element eventListener and child eventLisetner then by default at first trigger
 the child event and then trigger parent and then parent.... when we have parent eventListener
 
-but we can stop this default behavior using event.stopPropagatiobn() method this time it only work on 
+but we can stop this default behavior using event.stopPropagation() method this time it only work on 
 this child element. 
 
 like this 
