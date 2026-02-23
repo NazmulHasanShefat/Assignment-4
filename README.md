@@ -64,21 +64,78 @@
    
 
 ### 4. What is Event Delegation in JavaScript? Why is it useful?
+#### Ans:
+  - Event Delegation such a method where we add a single eventListener to a parent element instead of
+  attaching separate event listener to multiple child elements. When you click the parent inside child
+  elements then parent element event is started and this event find the targeted element and that child 
+  element react like this
+
+  ```html
+  <div class="parent" style="width: 100px; height: 100px; background-color: rebeccapurple;">
+    <div class="child1 divs" style="width: 60px; height: 60px; background-color: red;">div1</div>
+    <div class="child2 divs" style="width: 30px; height: 30px; background-color: rgb(0, 255, 115);">div2
+</div>
+```
+
+
+  ```js
+   const child2 = document.querySelector(".child2");
+        const child1 = document.querySelector(".child1");
+        const parent = document.querySelector(".parent");
+
+        parent.addEventListener("click", (e) => {
+            if(e.target.classList.contains("divs")){  // when finds the divs it's do anything
+                console.log(e.target.textContent)
+            }
+        });
+        // output 
+        // when click the parent element then it find where have divs and do it spacific task
+        // click div1 output div1
+        // click div2 output div2
+        // we can add a single event listener for multiple child element 
+
+  ``` 
 
 ### 5. What is the difference between preventDefault() and stopPropagation() methods?
+#### Ans:
+### preventDefault()
+- it stop the html default behavior like when html form submit it's by default reload the page 
+we can stop this behavior help of event.preventDefault() method
 
----
+### stopPropagation();
+- When We have parent element eventListener and child eventLisetner then by default at first trigger
+the child event and then trigger parent and then parent.... when we have parent eventListener
 
+but we can stop this default behavior using event.stopPropagatiobn() method this time it only work on 
+this child element. 
 
-**Technology Stack:**
-- HTML
-- CSS (Vanilla/Tailwind/DaisyUI)
-- JavaScript (Vanilla)
+like this 
+```html
 
+<div class="parent" style="width: 100px; height: 100px; background-color: rebeccapurple;">
+    <div class="child1" style="width: 60px; height: 60px; background-color: red;">
+      <div class="child2" style="width: 30px; height: 30px; background-color: rgb(0, 255, 115);">
+    </div>
+  </div>
 
---- 
+    <script>
+        const child2 = document.querySelector(".child2");
+        const child1 = document.querySelector(".child1");
+        const parent = document.querySelector(".parent");
 
-## What to submit: 
+        parent.addEventListener("click", () => {
+            console.log("parent clicked")
+        });
+        child1.addEventListener("click", () => {
+            console.log("child1 clicked")
+        });
+        child2.addEventListener("click", (e) => {
+            e.stopPropagation();
+            console.log("child2 clicked")
+        });
 
-1. GitHub Repository Link: 
-2. Live Site Link: 
+        // output 
+        // when click child2 
+        // child2 clicked
+    </script>
+```
