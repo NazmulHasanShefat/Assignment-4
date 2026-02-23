@@ -73,9 +73,8 @@
 ### 4. What is Event Delegation in JavaScript? Why is it useful?
 #### Ans:
   - Event Delegation such a method where we add a single eventListener to a parent element instead of
-  attaching separate event listener to multiple child elements. When you click the parent inside child
-  elements then parent element event is started and this event find the targeted element and that child 
-  element react like this
+  attaching separate event listener to multiple child elements. When you click the targeted element it's
+  do anithing without added eventListener. 
 
   ```html
   <div class="parent" style="width: 100px; height: 100px; background-color: rebeccapurple;">
@@ -102,6 +101,8 @@
         // we can add a single event listener for multiple child element 
 
   ``` 
+
+  If there was no event delegation, I would have to fetch the element from the html separately. But because of this, I don't have to fetch it from the html and add the eventListener separately. That's why event delegation is so useful. 
 
 ### 5. What is the difference between preventDefault() and stopPropagation() methods?
 #### Ans:
