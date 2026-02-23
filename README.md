@@ -7,7 +7,8 @@
   getElementbyId is used to get HTML unique element and manipulate unique element. 
 
   #### getElementsByClassName()
-  getElementsByClassName is used to get all that HTML element that element contains a specified className.
+  getElementsByClassName is used to get all HTML elements that contain a specified class name.
+  it return HTML collections
  
   #### querySelector()
   querySelector is used to get a single HTML element that have specified class name that className given 
@@ -18,6 +19,9 @@
   #### querySelectorAll()
   querySelectorAll is used to retrieve all html elements whose class matches the class given inside this method.
   We can use same as CSS selector inside this
+
+  it return nodelist this nodelist have prototype inside this prototype have forEach method and other method
+  we can manipulate there elements using there methods. 
 
 ### 2. How do you create and insert a new element into the DOM?
 ##### Ans:
