@@ -77,11 +77,11 @@ function getjobData() {
                             </div>
                         </div>
                         <div class="text-[#64748B] py-2">
-                            <ul class="flex items-center gap-3 text-sm">
+                            <ul class="flex flex-col lg:flex-row lg:items-center lg:gap-3 gap-1 text-sm">
                                 <li>${job.jobPlace}</li>
-                                <span> • </span>
+                                <span class="hidden lg:inline"> • </span>
                                 <li class="">${job.jobTiming}</li>
-                                <span> • </span>
+                                <span class="hidden lg:inline"> • </span>
                                 <li><span><span>$</span>${(job.startingSalery).toLocaleString()}</span> - <span>$</span><span>${(job.highestSalary).toLocaleString()}</span></li>
                             </ul>
                         </div>
@@ -178,21 +178,21 @@ function getInterviewList() {
                                 <h3 class="font-semibold text-[18px] companyName">${intlist.companyName}</h3>
                                 <p class="roll text-[#64748B] py-1 text-sm">${intlist.NeedRoll}</p>
                             </div>
-                            <div class="delete_icon cursor-pointer" title="delete">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                    <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4" />
+                            <div class="delete_icon_interview_list cursor-pointer group" title="delete" data-deleteinterview="${intlist.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none" class="pointer-events-none">
+                                    <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4" class="group-hover:fill-red-500"/>
                                     <path
                                         d="M21.5 11H19V10.5C19 10.1022 18.842 9.72064 18.5607 9.43934C18.2794 9.15804 17.8978 9 17.5 9H14.5C14.1022 9 13.7206 9.15804 13.4393 9.43934C13.158 9.72064 13 10.1022 13 10.5V11H10.5C10.3674 11 10.2402 11.0527 10.1464 11.1464C10.0527 11.2402 10 11.3674 10 11.5C10 11.6326 10.0527 11.7598 10.1464 11.8536C10.2402 11.9473 10.3674 12 10.5 12H11V21C11 21.2652 11.1054 21.5196 11.2929 21.7071C11.4804 21.8946 11.7348 22 12 22H20C20.2652 22 20.5196 21.8946 20.7071 21.7071C20.8946 21.5196 21 21.2652 21 21V12H21.5C21.6326 12 21.7598 11.9473 21.8536 11.8536C21.9473 11.7598 22 11.6326 22 11.5C22 11.3674 21.9473 11.2402 21.8536 11.1464C21.7598 11.0527 21.6326 11 21.5 11ZM14 10.5C14 10.3674 14.0527 10.2402 14.1464 10.1464C14.2402 10.0527 14.3674 10 14.5 10H17.5C17.6326 10 17.7598 10.0527 17.8536 10.1464C17.9473 10.2402 18 10.3674 18 10.5V11H14V10.5ZM20 21H12V12H20V21ZM15 14.5V18.5C15 18.6326 14.9473 18.7598 14.8536 18.8536C14.7598 18.9473 14.6326 19 14.5 19C14.3674 19 14.2402 18.9473 14.1464 18.8536C14.0527 18.7598 14 18.6326 14 18.5V14.5C14 14.3674 14.0527 14.2402 14.1464 14.1464C14.2402 14.0527 14.3674 14 14.5 14C14.6326 14 14.7598 14.0527 14.8536 14.1464C14.9473 14.2402 15 14.3674 15 14.5ZM18 14.5V18.5C18 18.6326 17.9473 18.7598 17.8536 18.8536C17.7598 18.9473 17.6326 19 17.5 19C17.3674 19 17.2402 18.9473 17.1464 18.8536C17.0527 18.7598 17 18.6326 17 18.5V14.5C17 14.3674 17.0527 14.2402 17.1464 14.1464C17.2402 14.0527 17.3674 14 17.5 14C17.6326 14 17.7598 14.0527 17.8536 14.1464C17.9473 14.2402 18 14.3674 18 14.5Z"
-                                        fill="#64748B" />
+                                        fill="#64748B" class="group-hover:fill-white"/>
                                 </svg>
                             </div>
                         </div>
                         <div class="text-[#64748B] py-2">
-                            <ul class="flex items-center gap-3 text-sm">
+                            <ul class="flex flex-col lg:flex-row lg:items-center lg:gap-3 gap-1 text-sm">
                                 <li>${intlist.jobPlace}</li>
-                                <span> • </span>
+                                <span class="hidden lg:inline"> • </span>
                                 <li class="">${intlist.jobTiming}</li>
-                                <span> • </span>
+                                <span class="hidden lg:inline"> • </span>
                                 <li><span><span>$</span>${(intlist.startingSalery).toLocaleString()}</span> - <span>$</span><span>${(intlist.highestSalary).toLocaleString()}</span></li>
                             </ul>
                         </div>
@@ -206,6 +206,20 @@ function getInterviewList() {
                         </div>
                     </div>
             `;
+
+            // delete item from intervew list
+            const delete_icon_interview_list = document.querySelectorAll(".delete_icon_interview_list");
+            delete_icon_interview_list.forEach(delbtn => {
+                delbtn.addEventListener("click",(e)=>{
+                    const findInterviewIndex = interviewList.findIndex(item => item.id === Number(e.target.dataset.deleteinterview));
+
+                    if(findInterviewIndex > -1){
+                        interviewList.splice(findInterviewIndex, 1);
+                        getInterviewList();
+                        showTotalsHeader();
+                    }
+                })
+            })
 
             const reject_btn = document.querySelectorAll(".reject_btn");
             // reject object to interview object moved
@@ -247,21 +261,21 @@ function getRejectedList() {
                                 <h3 class="font-semibold text-[18px] companyName">${item.companyName}</h3>
                                 <p class="roll text-[#64748B] py-1 text-sm">${item.NeedRoll}</p>
                             </div>
-                            <div class="delete_icon cursor-pointer" title="delete">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                    <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4" />
+                            <div class="delete_icon_rejction_list cursor-pointer group" title="delete" data-rejdelid="${item.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none" class="pointer-events-none">
+                                    <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4" class="group-hover:fill-red-600"/>
                                     <path
                                         d="M21.5 11H19V10.5C19 10.1022 18.842 9.72064 18.5607 9.43934C18.2794 9.15804 17.8978 9 17.5 9H14.5C14.1022 9 13.7206 9.15804 13.4393 9.43934C13.158 9.72064 13 10.1022 13 10.5V11H10.5C10.3674 11 10.2402 11.0527 10.1464 11.1464C10.0527 11.2402 10 11.3674 10 11.5C10 11.6326 10.0527 11.7598 10.1464 11.8536C10.2402 11.9473 10.3674 12 10.5 12H11V21C11 21.2652 11.1054 21.5196 11.2929 21.7071C11.4804 21.8946 11.7348 22 12 22H20C20.2652 22 20.5196 21.8946 20.7071 21.7071C20.8946 21.5196 21 21.2652 21 21V12H21.5C21.6326 12 21.7598 11.9473 21.8536 11.8536C21.9473 11.7598 22 11.6326 22 11.5C22 11.3674 21.9473 11.2402 21.8536 11.1464C21.7598 11.0527 21.6326 11 21.5 11ZM14 10.5C14 10.3674 14.0527 10.2402 14.1464 10.1464C14.2402 10.0527 14.3674 10 14.5 10H17.5C17.6326 10 17.7598 10.0527 17.8536 10.1464C17.9473 10.2402 18 10.3674 18 10.5V11H14V10.5ZM20 21H12V12H20V21ZM15 14.5V18.5C15 18.6326 14.9473 18.7598 14.8536 18.8536C14.7598 18.9473 14.6326 19 14.5 19C14.3674 19 14.2402 18.9473 14.1464 18.8536C14.0527 18.7598 14 18.6326 14 18.5V14.5C14 14.3674 14.0527 14.2402 14.1464 14.1464C14.2402 14.0527 14.3674 14 14.5 14C14.6326 14 14.7598 14.0527 14.8536 14.1464C14.9473 14.2402 15 14.3674 15 14.5ZM18 14.5V18.5C18 18.6326 17.9473 18.7598 17.8536 18.8536C17.7598 18.9473 17.6326 19 17.5 19C17.3674 19 17.2402 18.9473 17.1464 18.8536C17.0527 18.7598 17 18.6326 17 18.5V14.5C17 14.3674 17.0527 14.2402 17.1464 14.1464C17.2402 14.0527 17.3674 14 17.5 14C17.6326 14 17.7598 14.0527 17.8536 14.1464C17.9473 14.2402 18 14.3674 18 14.5Z"
-                                        fill="#64748B" />
+                                        fill="#64748B" class="group-hover:fill-white"/>
                                 </svg>
                             </div>
                         </div>
                         <div class="text-[#64748B] py-2">
-                            <ul class="flex items-center gap-3 text-sm">
+                            <ul class="flex flex-col lg:flex-row lg:items-center lg:gap-3 gap-1 text-sm">
                                 <li>${item.jobPlace}</li>
-                                <span> • </span>
+                                <span class="hidden lg:inline"> • </span>
                                 <li class="">${item.jobTiming}</li>
-                                <span> • </span>
+                                <span class="hidden lg:inline"> • </span>
                                 <li><span><span>$</span>${(item.startingSalery).toLocaleString()}</span> - <span>$</span><span>${(item.highestSalary).toLocaleString()}</span></li>
                             </ul>
                         </div>
@@ -275,6 +289,20 @@ function getRejectedList() {
                         </div>
                     </div>
             `;
+
+            const delete_icon_rejction_list = document.querySelectorAll(".delete_icon_rejction_list");
+            delete_icon_rejction_list.forEach(delbtn => {
+                delbtn.addEventListener("click",(e)=>{
+                    console.log(e.target.dataset.rejdelid);
+                    const findRejectionIndex = rejectedList.findIndex(item => item.id === Number(e.target.dataset.rejdelid));
+
+                    if(findRejectionIndex > -1){
+                        rejectedList.splice(findRejectionIndex, 1);
+                        getRejectedList();
+                        showTotalsHeader();
+                    }
+                })
+            })
 
             const interview_btn = document.querySelectorAll(".interview_btn");
 
