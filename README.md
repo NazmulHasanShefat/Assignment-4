@@ -36,7 +36,7 @@
   ```html
   <div class="parent">
     <div class="child1">
-      <div class="child2">
+      <div class="child2"></div>
     </div>
   </div>
   ```
@@ -76,7 +76,7 @@
   ```html
   <div class="parent" style="width: 100px; height: 100px; background-color: rebeccapurple;">
     <div class="child1 divs" style="width: 60px; height: 60px; background-color: red;">div1</div>
-    <div class="child2 divs" style="width: 30px; height: 30px; background-color: rgb(0, 255, 115);">div2
+    <div class="child2 divs" style="width: 30px; height: 30px; background-color: rgb(0, 255, 115);">div2 </div>
 </div>
 ```
 
@@ -117,7 +117,7 @@ like this
 
 <div class="parent" style="width: 100px; height: 100px; background-color: rebeccapurple;">
     <div class="child1" style="width: 60px; height: 60px; background-color: red;">
-      <div class="child2" style="width: 30px; height: 30px; background-color: rgb(0, 255, 115);">
+      <div class="child2" style="width: 30px; height: 30px; background-color: rgb(0, 255, 115);">div2</div>
     </div>
   </div>
 
