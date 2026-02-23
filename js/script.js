@@ -96,14 +96,15 @@ function getjobData() {
                     </div>
             `;
 
+            // delete item from joblist item by findIndex
             const all_tab_delete_icon = document.querySelectorAll(".all_tab_delete_icon");
-
             all_tab_delete_icon.forEach(del_icon => {
                 del_icon.addEventListener("click",(e)=>{
                     const findObjToDeleteIndex = jobs.findIndex(item => item.id === Number(e.target.dataset.delid));
 
                     if(findObjToDeleteIndex > -1){
                         jobs.splice(findObjToDeleteIndex, 1);
+                        // update jobdatalist
                         getjobData();
                         // updater header ui
                         showTotalsHeader();
@@ -158,7 +159,7 @@ function getjobData() {
 
 }
 
-// showing INTERVIEW list on ui
+// showing INTERVIEW list in ui
 function getInterviewList() {
     jobCards_container.innerHTML = "";
     if (interviewList.length === 0) {
@@ -221,8 +222,8 @@ function getInterviewList() {
                 })
             })
 
+            // move interview item to rejcted time
             const reject_btn = document.querySelectorAll(".reject_btn");
-            // reject object to interview object moved
             reject_btn.forEach(btn => {
                 btn.addEventListener("click", (e) => {
                     const rejected_obj = interviewList.find(item => item.id === Number(e.target.dataset.jobrejid));
@@ -242,6 +243,7 @@ function getInterviewList() {
     }
 }
 
+// showwing REJECTED list in ui
 function getRejectedList() {
     jobCards_container.innerHTML = "";
     if (rejectedList.length === 0) {
@@ -290,6 +292,7 @@ function getRejectedList() {
                     </div>
             `;
 
+            // delete item from rejction list
             const delete_icon_rejction_list = document.querySelectorAll(".delete_icon_rejction_list");
             delete_icon_rejction_list.forEach(delbtn => {
                 delbtn.addEventListener("click",(e)=>{
@@ -298,14 +301,15 @@ function getRejectedList() {
 
                     if(findRejectionIndex > -1){
                         rejectedList.splice(findRejectionIndex, 1);
+                        // update ui
                         getRejectedList();
                         showTotalsHeader();
                     }
                 })
             })
 
+            // move item rejection list to interview list
             const interview_btn = document.querySelectorAll(".interview_btn");
-
             interview_btn.forEach(btn => {
                 btn.addEventListener("click", (e) => {
                     const rejectObj = rejectedList.find(item => item.id === Number(e.target.dataset.jobid));
@@ -315,6 +319,7 @@ function getRejectedList() {
                     rejectObj.status = "INTERVIEW";
                     interviewList.push(rejectObj)
                     rejectedList.splice(findObjIndex, 1);
+                    // updata UI
                     getRejectedList();
                     showTotalsHeader();
                 })
