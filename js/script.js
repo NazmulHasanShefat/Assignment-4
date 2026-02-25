@@ -66,7 +66,7 @@ function getjobData() {
     // check joblist is empty or not
     if (jobs.length === 0) {
         jobCards_container.innerHTML = `
-        <div class="noJob flex flex-col items-center mt-15 p-5">
+        <div class="noJob flex flex-col items-center text-center mt-15 p-5">
                 <img src="./jobs.png" alt="">
                 <h1 class="text-lg">No jobs available</h1>
                 <p>Check back soon for new job opportunities</p>
@@ -179,7 +179,7 @@ function getInterviewList() {
     jobCards_container.innerHTML = "";
     if (interviewList.length === 0) {
         jobCards_container.innerHTML = `
-          <div class="noJob flex flex-col items-center mt-15 p-5">
+          <div class="noJob flex flex-col items-center text-center mt-15 p-5">
                 <img src="./jobs.png" alt="">
                 <h1 class="text-lg">No jobs available</h1>
                 <p>Check back soon for new job opportunities</p>
@@ -265,7 +265,7 @@ function getRejectedList() {
     jobCards_container.innerHTML = "";
     if (rejectedList.length === 0) {
         jobCards_container.innerHTML = `
-          <div class="noJob flex flex-col items-center mt-15 p-5">
+          <div class="noJob flex flex-col items-center text-center mt-15 p-5">
                 <img src="./jobs.png" alt="">
                 <h1 class="text-lg">No jobs available</h1>
                 <p>Check back soon for new job opportunities</p>
